@@ -12,6 +12,8 @@ module ModeloQytetet
 
     attr_reader :mazo
     attr_reader :tablero
+    attr_reader :jugador_actual
+    attr_reader :jugadores
 
     MAX_JUGADORES = 4
     MAX_CARTAS = 10
@@ -30,7 +32,7 @@ module ModeloQytetet
 
     def inicializar_sorpresas
       @mazo = Array.new
-      mazo << Sorpresa.new("La DEA te ha pillado con cocaína y pasarás un tiempo en Litchfield", tablero.carcel.numeroCasilla, TipoSorpresa::IRACASILLA)
+      mazo << Sorpresa.new("La DEA te ha pillado con cocaína y pasarás un tiempo en Litchfield", tablero.carcel.numero_casilla, TipoSorpresa::IRACASILLA)
       mazo << Sorpresa.new("Encuentras un acceso al Upside Down y te lleva directo a Jackson", 16, TipoSorpresa::IRACASILLA)
       mazo << Sorpresa.new("Te han invitado a una fiesta por la noche en casa de Jessica", 13, TipoSorpresa::IRACASILLA)
       mazo << Sorpresa.new("Los otros jugadores han probado tu producto azul y te pagan unos cuantos gramos", 500, TipoSorpresa::PORJUGADOR)
@@ -113,27 +115,40 @@ module ModeloQytetet
     end
 
     def propiedades_hipotecadas_jugador(hipotecadas)
-      raise NotImplementedError.new
+      @jugador_actual.obtener_propiedades_hipotecadas(hipotecadas)
     end
 
     def siguiente_jugador
-      raise NotImplementedError.new
+      nextPlayer = 0
+      if @jugador_actual != nil
+        index = @jugadores.index(@jugador_actual)
+        if index > (@jugadores.size - 1)
+          nextPlayer = index
+        end
+      end
+      @jugador_actual = jugadores[nextPlayer]
     end
 
     def vender_propiedad(casilla)
       raise NotImplementedError.new
     end
 
+    private
     def encarcelar_jugador
       raise NotImplementedError.new
     end
 
     def inicializar_jugadores(nombres)
-      raise NotImplementedError.new
+      nombres.each {|n|
+        @jugadores << Jugador.new(n)
+      }
     end
     
     def salida_jugadores()
-      raise NotImplementedError.new
+      @jugadores.each{ |j|
+        j.casilla_actual = @tablero.obtener_casilla_numero(0)
+        j.saldo = 7500
+      }
     end
   end
 end

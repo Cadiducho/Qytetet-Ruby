@@ -2,26 +2,28 @@ require_relative "titulo_propiedad"
 
 module ModeloQytetet
   class Casilla
-    attr_reader :numeroCasilla
+    attr_reader :numero_casilla
     attr_accessor :coste
-    attr_accessor :numHoteles
-    attr_accessor :numCasas
+    attr_accessor :num_hoteles
+    attr_accessor :num_casas
     attr_reader :tipo
     attr_accessor :titulo
     
     def initialize(tipo, numCasilla)
-      @numeroCasilla = numCasilla
+      @numero_casilla = numCasilla
       @tipo = tipo
       @coste = 0
-      @numHoteles = 0
-      @numCasas = 0
+      @num_hoteles = 0
+      @num_casas = 0
     end
     
-    def self.new_street(coste, numCasilla)
+    def self.new_street(coste, numCasilla, titulo)
       cas = new(TipoCasilla::CALLE, numCasilla)
       cas.coste = coste
-      cas.numHoteles = 0
-      cas.numCasas = 0
+      cas.num_hoteles = 0
+      cas.num_casas = 0
+      cas.titulo = titulo
+      cas.titulo.casilla = cas
       cas
     end
 
@@ -50,11 +52,11 @@ module ModeloQytetet
     end
 
     def esta_hipotecada
-      raise NotImplementedError.new
+      @titulo.isHipotecada
     end
 
     def get_coste_hipoteca
-      raise NotImplementedError.new
+      @titulo.hipoteca_base + @num_casas * 0.5 + @titulo.hipoteca_base + @num_hoteles * @titulo.hipoteca_base
     end
 
     def get_precio_edificar
@@ -70,7 +72,7 @@ module ModeloQytetet
     end
 
     def propietario_encarcelado
-      raise NotImplementedError.new
+      @titulo != nil ? @titulo.propietario.encarcelado : false
     end
 
     def se_puede_edificar_casa
@@ -82,11 +84,11 @@ module ModeloQytetet
     end
 
     def soy_edificable
-      raise NotImplementedError.new
+      @tipo == TipoCasilla::CALLE
     end
 
     def tengo_propietario
-      raise NotImplementedError.new
+      @titulo != nil ? @titulo.tengo_propietario : false
     end
 
     def vender_titulo
@@ -94,7 +96,8 @@ module ModeloQytetet
     end
     
     def to_s
-      "NumeroCasilla #{@numeroCasilla} \n Coste: #{@coste} \n NumHoteles: #{@numHoteles} \n NumCasas #{@numCasas}\n Tipo: #{@tipo}"
-    end 
+      "NumeroCasilla #{@numero_casilla} \n Coste: #{@coste} \n NumHoteles: #{@num_hoteles} \n NumCasas #{@numCasas}\n Tipo: #{@tipo}"
+    end
+
   end
 end

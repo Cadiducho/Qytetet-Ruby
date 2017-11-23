@@ -3,19 +3,19 @@ module ModeloQytetet
     
     attr_reader :nombre
     attr_accessor :hipotecada
-    attr_reader :alquilerBase
-    attr_reader :factorRevalorizacion
-    attr_reader :hipotecaBase
-    attr_reader :precioEdificar
+    attr_reader :alquiler_base
+    attr_reader :factor_revalorizacion
+    attr_reader :hipoteca_base
+    attr_reader :precio_edificar
     attr_accessor :propietario
     attr_accessor :casilla
     def initialize(nombre, alquilerBase, factorRevalorizacion, hipotecaBase, precioEdificar)
       @nombre = nombre
       @hipotecada = false;
-      @alquilerBase = alquilerBase
-      @factorRevalorizacion = factorRevalorizacion
-      @hipotecaBase = hipotecaBase
-      @precioEdificar = precioEdificar
+      @alquiler_base = alquilerBase
+      @factor_revalorizacion = factorRevalorizacion
+      @hipoteca_base = hipotecaBase
+      @precio_edificar = precioEdificar
       @casilla = nil
       @propietario = nil
     end
@@ -29,8 +29,8 @@ module ModeloQytetet
     end
     
     def to_s
-      "Nombre #{nombre} \n Hipotecada #{hipotecada} \n AlquilerBase #{@alquilerBase} 
-        \n FactorRevalorizacion #{@factorRevalorizacion}\n HipotecaBase #{@hipotecaBase} PrecioEdificar #{@precioEdificar}"
+      "Nombre #{nombre} \n Hipotecada #{hipotecada} \n AlquilerBase #{@alquiler_base}
+        \n FactorRevalorizacion #{@factor_revalorizacion}\n HipotecaBase #{@hipoteca_base} PrecioEdificar #{@precio_edificar}"
     end 
   end
 end
