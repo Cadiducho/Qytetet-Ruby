@@ -9,16 +9,17 @@ module ModeloQytetet
     attr_reader :tipo
     attr_accessor :titulo
     
-    def initialize(tipo, numCasilla)
-      @numero_casilla = numCasilla
+    def initialize(tipo, num_casilla)
+      @numero_casilla = num_casilla
       @tipo = tipo
       @coste = 0
       @num_hoteles = 0
       @num_casas = 0
+      @titulo = nil
     end
     
-    def self.new_street(coste, numCasilla, titulo)
-      cas = new(TipoCasilla::CALLE, numCasilla)
+    def self.new_street(coste, num_casilla, titulo)
+      cas = new(TipoCasilla::CALLE, num_casilla)
       cas.coste = coste
       cas.num_hoteles = 0
       cas.num_casas = 0
@@ -28,31 +29,37 @@ module ModeloQytetet
     end
 
     def asignar_propietario(jugador)
-      raise NotImplementedError.new
+      @titulo.propietario = jugador
+
+      @titulo
     end
 
     def calcular_valor_hipoteca
-      raise NotImplementedError.new
+      (@titulo.hipoteca_base * num_casas * 0.5 * @titulo.hipoteca_base + num_hoteles * @titulo.hipoteca_base).round
     end
 
     def cancelar_hipoteca
-      raise NotImplementedError.new
+      @titulo.hipotecada = false
+
+      (calcular_valor_hipoteca * 1.10).round
     end
 
     def cobrar_alquiler
-      raise NotImplementedError.new
+      (@titulo.alquiler_base + (num_casas * 0.5 + num_hoteles * 2)).round
     end
 
     def edificar_casa
-      raise NotImplementedError.new
+      @num_casas++
+      get_precio_edificar
     end
 
     def edificar_hotel
-      raise NotImplementedError.new
+      @num_hoteles++
+      get_precio_edificar
     end
 
     def esta_hipotecada
-      @titulo.isHipotecada
+      @titulo.hipotecada
     end
 
     def get_coste_hipoteca
@@ -60,11 +67,12 @@ module ModeloQytetet
     end
 
     def get_precio_edificar
-      raise NotImplementedError.new
+      @titulo.precio_edificar
     end
 
     def hipotecar
-      raise NotImplementedError.new
+      @titulo.hipotecada = true
+      calcular_valor_hipoteca
     end
 
     def precio_total_comprar
@@ -76,11 +84,11 @@ module ModeloQytetet
     end
 
     def se_puede_edificar_casa
-      raise NotImplementedError.new
+      @num_casas < 4
     end
 
     def se_puede_edificar_hotel
-      raise NotImplementedError.new
+      @num_hoteles < 4
     end
 
     def soy_edificable
@@ -92,11 +100,11 @@ module ModeloQytetet
     end
 
     def vender_titulo
-      raise NotImplementedError.new
+      (coste + @titulo.factor_revalorizacion * (@coste + (@num_casas + @num_hoteles) * @titulo.get_precio_edificar)).round
     end
     
     def to_s
-      "NumeroCasilla #{@numero_casilla} \n Coste: #{@coste} \n NumHoteles: #{@num_hoteles} \n NumCasas #{@numCasas}\n Tipo: #{@tipo}"
+      "NumeroCasilla #{@numero_casilla} \n Coste: #{@coste} \n NumHoteles: #{@num_hoteles} \n NumCasas #{@num_casas}\n Tipo: #{@tipo}"
     end
 
   end

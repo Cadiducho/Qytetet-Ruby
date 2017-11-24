@@ -5,6 +5,10 @@ require_relative "qytetet"
 module ModeloQytetet
 
   qytetet = Qytetet.instance
+  nombres = Array.new
+  nombres << "Dani"
+  nombres << "Roberto"
+  qytetet.inicializar_juego(nombres)
 
   puts 'Todas las sorpresas'
   qytetet.mazo.each { |sorpresa| puts sorpresa }

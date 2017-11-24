@@ -5,7 +5,7 @@ module ModeloQytetet
     include Singleton
 
     def tirar
-      num = 1 + rand(6)
+      1 + rand(6)
     end
   end
 end
