@@ -89,7 +89,7 @@ module ModeloQytetet
     end
 
     def obtener_nueva_casilla(origen, desplazamiento)
-        obtener_casilla_numero((origen.numero_casilla + desplazamiento) % Qytetet.instance.MAX_CASILLAS)
+        obtener_casilla_numero((origen.numero_casilla + desplazamiento) % Qytetet::MAX_CASILLAS)
     end
 
     def to_s
