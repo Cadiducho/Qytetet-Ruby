@@ -4,7 +4,7 @@ module InterfazTextualQytetet
   class VistaTextualQytetet
 
     def seleccion_menu(menu)
-      begin #Hasta que se hace una seleccionn valida
+      begin #Hasta que se hace una seleccion valida
         valido = true
         menu.each { |m| #se muestran las opciones del menuº
           mostrar( "#{m[0]}" + " : " + "#{m[1]}")
@@ -56,7 +56,12 @@ module InterfazTextualQytetet
     end
 
     def elegir_quiero_comprar
-      #se pide si o no se quiere comprar una propiedad
+      mostrar( 'Elige si quieres comprar la casilla')
+      menu_so = [[0, 'No'], [1, 'Sí']]
+      salida = seleccion_menu(menu_so)
+      mostrar( 'has elegido')
+      mostrar(salida)
+      salida
     end
 
     def menu_elegir_propiedad(lista_propiedades) # numero y nombre de propiedades
@@ -66,7 +71,7 @@ module InterfazTextualQytetet
         menu_ep << [numero_opcion, prop] # opcion de menu, numero y nombre de propiedad
         numero_opcion = numero_opcion+1
       }
-      mostrar(menu_ep.inspect)
+      #mostrar(menu_ep.inspect)
       seleccion_menu(menu_ep) # Método para controlar la elección correcta en el menú
     end
 
@@ -82,6 +87,7 @@ module InterfazTextualQytetet
       for i in 1..Integer(lectura)  #pide nombre de jugadores y los mete en un array
         mostrar('Jugador:  '+ i.to_s)
         nombre = gets.chomp
+        nombre
         nombres << nombre
       end
       nombres

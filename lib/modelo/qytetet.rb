@@ -195,7 +195,8 @@ module ModeloQytetet
         if nueva_casilla.tipo == TipoCasilla::JUEZ
           encarcelar_jugador
         elsif nueva_casilla.tipo == TipoCasilla::SORPRESA
-          @carta_actual = mazo.pop(0)
+          @carta_actual = @mazo[0]
+          @mazo.delete_at(0)
         end
       end
       tiene_propietario
@@ -217,11 +218,9 @@ module ModeloQytetet
       next_player = 0
       if @jugador_actual != nil
         index = @jugadores.index(@jugador_actual)
-        puts "index #{index}"
-        if index > (@jugadores.size - 1)
-          next_player = index
+        if index < (@jugadores.size - 1)
+          next_player = index + 1
         end
-        puts "next #{next_player}"
       end
       @jugador_actual = jugadores[next_player]
     end

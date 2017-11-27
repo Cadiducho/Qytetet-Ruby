@@ -75,8 +75,8 @@ module ModeloQytetet
     end
     private :add_casilla
 
-    def es_casilla_carcel(casilla)
-      casilla.numero_casilla == @carcel.numero_casilla
+    def es_casilla_carcel(num_casilla)
+      num_casilla == @carcel.numero_casilla
     end
 
     def obtener_casilla_numero(numero)
