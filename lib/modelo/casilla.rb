@@ -49,12 +49,13 @@ module ModeloQytetet
     end
 
     def edificar_casa
-      @num_casas++
+      @num_casas += 1
       get_precio_edificar
     end
 
     def edificar_hotel
-      @num_hoteles++
+      @num_hoteles += 1
+      @num_casas -= 4
       get_precio_edificar
     end
 
@@ -80,7 +81,11 @@ module ModeloQytetet
     end
 
     def propietario_encarcelado
-      @titulo != nil ? @titulo.propietario.encarcelado : false
+      if @titulo != nil
+        @titulo.propietario != nil ? @titulo.propietario.encarcelado : false
+      else
+        false
+      end
     end
 
     def se_puede_edificar_casa
@@ -88,7 +93,7 @@ module ModeloQytetet
     end
 
     def se_puede_edificar_hotel
-      @num_hoteles < 4
+      @num_hoteles < 4 && @num_casas >= 4
     end
 
     def soy_edificable
@@ -104,7 +109,18 @@ module ModeloQytetet
     end
     
     def to_s
-      "NumeroCasilla #{@numero_casilla} \n Coste: #{@coste} \n NumHoteles: #{@num_hoteles} \n NumCasas #{@num_casas}\n Tipo: #{@tipo}"
+      resumen = "Casilla ##{@numero_casilla} (#{@tipo}). "
+      if soy_edificable
+        if tengo_propietario
+          resumen += "\n * Propietario: #{@titulo.propietario.nombre}. Tiene #{@num_casas} casas y #{@num_hoteles} hoteles. Alquiler: #{cobrar_alquiler}$. Hipoteca: #{calcular_valor_hipoteca}$. Hipotecada: #{esta_hipotecada}"
+        else
+          resumen += "\n * En venta por #{coste}$: #{@titulo}"
+        end
+      end
+      if propietario_encarcelado
+        resumen += "\n * Su propietario está encarcelado. "
+      end
+      resumen
     end
 
   end

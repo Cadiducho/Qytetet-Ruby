@@ -82,7 +82,7 @@ module ModeloQytetet
     def obtener_casilla_numero(numero)
       casillas.each { |casilla|
         if casilla.numero_casilla == numero
-            return casilla
+          return casilla
         end
       }
       nil

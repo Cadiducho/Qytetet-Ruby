@@ -48,6 +48,7 @@ module ModeloQytetet
       @mazo << Sorpresa.new("El Presidente te otorga un presupuesto solicitado", 600, TipoSorpresa::PAGARCOBRAR)
       @mazo << Sorpresa.new("Matt Murdock te ha defendido en un juicio y debes pagar sus honorarios", -700, TipoSorpresa::PAGARCOBRAR)
       @mazo << Sorpresa.new("Elisabeth II te ha dado un indulto y puedes abandonar la prisión", 0, TipoSorpresa::SALIRCARCEL)
+      @mazo.shuffle!
     end
 
     def get_sopresas_valor_mayor_cero

@@ -108,11 +108,11 @@ module ModeloQytetet
     end
 
     def puedo_edificar_casa(casilla)
-      es_de_mipropiedad(casilla) && tengo_saldo(casilla.precio_edificar)
+      es_de_mipropiedad(casilla) && tengo_saldo(casilla.get_precio_edificar)
     end
 
     def puedo_edificar_hotel(casilla)
-      es_de_mipropiedad(casilla) && tengo_saldo(casilla.precio_edificar)
+      es_de_mipropiedad(casilla) && tengo_saldo(casilla.get_precio_edificar)
     end
 
     def puedo_hipotecar(casilla)
@@ -124,7 +124,7 @@ module ModeloQytetet
     end
 
     def puedo_vender_propiedad(casilla)
-      casilla.hipotecada && casilla.titulo.propietario.equal?(self)
+      casilla.hipotecada && es_de_mipropiedad(casilla)
     end
 
     def tengo_carta_libertad
@@ -150,11 +150,11 @@ module ModeloQytetet
     end
 
     def eliminar_de_mis_propiedades(casilla)
-      @propiedades.delete(casilla)
+      @propiedades.delete(casilla.titulo)
     end
 
     def es_de_mipropiedad(casilla)
-      casilla.titulo.propietario.equal?(self)
+      @propiedades.include?(casilla.titulo)
     end
 
     def tengo_saldo(cantidad)

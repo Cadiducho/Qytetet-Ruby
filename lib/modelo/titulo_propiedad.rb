@@ -29,8 +29,7 @@ module ModeloQytetet
     end
     
     def to_s
-      "Nombre #{nombre} \n Hipotecada #{hipotecada} \n AlquilerBase #{@alquiler_base}
-        \n FactorRevalorizacion #{@factor_revalorizacion}\n HipotecaBase #{@hipoteca_base} PrecioEdificar #{@precio_edificar}"
+      "#{nombre}. Alquiler base: #{@alquiler_base}$. Factor de Revalorizacion #{@factor_revalorizacion}. Hipoteca Base: #{@hipoteca_base}$. Precio Edificar #{@precio_edificar}$"
     end 
   end
 end
