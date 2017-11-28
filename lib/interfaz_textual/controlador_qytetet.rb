@@ -36,8 +36,14 @@ module InterfazTextualQytetet
         #si esta en la carcel, trato especial
         if @jugador.encarcelado
           @vista.mostrar("Estás en la cárcel")
-          metodo = @vista.menu_salir_carcel
-
+          metodo_n = @vista.menu_salir_carcel
+          metodo = nil
+          case (metodo_n)
+            when 0
+              metodo = MetodoSalirCarcel::TIRANDODADO
+            when 1 
+              metodo = MetodoSalirCarcel::PAGANDOLIBERTAD
+          end
           sale = @juego.intentar_salir_carcel(metodo)
           if sale
             @vista.mostrar(" -> Has salido de la cárcel. Ahora puedes seguir jugando")
@@ -90,16 +96,16 @@ module InterfazTextualQytetet
                 @vista.mostrar(" -> " + (edificada ? "Has edificado" : "No has podido edificar") + " una casa")
               when 2
                 edificado = @juego.edificar_hotel(edit_casilla)
-                @vista.mostrar(" -> " +(edificado ? "Has edificado" : "No has podido edificar") + " un hotel")
+                @vista.mostrar(" -> " + (edificado ? "Has edificado" : "No has podido edificar") + " un hotel")
               when 3
                 vendido = @juego.vender_propiedad(edit_casilla)
-                @vista.mostrar(" -> " +(vendido ? "Has vendido" : "No has podido vender") + " la casilla")
+                @vista.mostrar(" -> " + (vendido ? "Has vendido" : "No has podido vender") + " la casilla")
               when 4
                 hipotecada = @juego.hipotecar_propiedad(edit_casilla)
-                @vista.mostrar(" -> " +(hipotecada ? "Has hipotecado" : "No has podido hipotecar") + " la casilla")
+                @vista.mostrar(" -> " + (hipotecada ? "Has hipotecado" : "No has podido hipotecar") + " la casilla")
               when 5
                 cancelada = @juego.cancelar_hipoteca(edit_casilla)
-                @vista.mostrar(" -> " +(cancelada ? "Has cancelado" : "No has podido cancelar") + " la hipoteca de la casilla")
+                @vista.mostrar(" -> " + (cancelada ? "Has cancelado" : "No has podido cancelar") + " la hipoteca de la casilla")
             end
           end
         end

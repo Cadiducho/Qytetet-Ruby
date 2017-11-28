@@ -20,15 +20,15 @@ module ModeloQytetet
       pagas_cobras = @valor < 0 ? "Pagas" : "Cobras"
       case @tipo
         when TipoSorpresa::PAGARCOBRAR
-          resumen += pagas_cobras + " #{@valor.abs}"
+          resumen += "\n * #{pagas_cobras} #{@valor.abs}"
         when TipoSorpresa::IRACASILLA
           resumen += "\n * Vas a la " + (Qytetet.instance.tablero.es_casilla_carcel(@valor) ? "cárcel" : "casilla #{@valor}")
         when TipoSorpresa::PORCASAHOTEL
-          resumen += pagas_cobras + " por cada casa y hotel #{@valor.abs}"
+          resumen += "\n * #{pagas_cobras} por cada casa y hotel #{@valor.abs}"
         when TipoSorpresa::PORJUGADOR
-          resumen += pagas_cobras + " a cada jugador #{@valor.abs}"
+          resumen += "\n * #{pagas_cobras} a cada jugador #{@valor.abs}"
         when TipoSorpresa::SALIRCARCEL
-          resumen += "Podrás salir de la cárcel"
+          resumen += "\n * Podrás salir de la cárcel"
       end
       resumen
     end 

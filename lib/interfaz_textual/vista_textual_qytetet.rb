@@ -41,8 +41,6 @@ module InterfazTextualQytetet
       mostrar( 'Elige la gestion inmobiliaria que deseas hacer')
       menu_gi = [[0, 'Siguiente Jugador'], [1, 'Edificar casa'], [2, 'Edificar Hotel'], [3, 'Vender propiedad'],[4, 'Hipotecar Propiedad'], [5, 'Cancelar Hipoteca']]
       salida = seleccion_menu(menu_gi)
-      mostrar( 'has elegido')
-      mostrar(salida)
       salida
     end
 
@@ -50,8 +48,6 @@ module InterfazTextualQytetet
       mostrar( 'Elige el metodo para salir de la carcel')
       menu_so = [[0, 'Tirando el dado'], [1, 'Pagando mi libertad']]
       salida = seleccion_menu(menu_so)
-      mostrar( 'has elegido')
-      mostrar(salida)
       salida
     end
 
@@ -59,8 +55,6 @@ module InterfazTextualQytetet
       mostrar( 'Elige si quieres comprar la casilla')
       menu_so = [[0, 'No'], [1, 'Sí']]
       salida = seleccion_menu(menu_so)
-      mostrar( 'has elegido')
-      mostrar(salida)
       salida
     end
 

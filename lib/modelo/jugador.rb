@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 module ModeloQytetet
   class Jugador
 
@@ -116,15 +118,15 @@ module ModeloQytetet
     end
 
     def puedo_hipotecar(casilla)
-      es_de_mipropiedad(casilla)
+      es_de_mipropiedad(casilla) && !casilla.titulo.hipotecada
     end
 
     def puedo_pagar_hipoteca(casilla)
-      es_de_mipropiedad(casilla) && (casilla.calcular_valor_hipoteca * 1.10) <= @saldo
+      es_de_mipropiedad(casilla) && casilla.titulo.hipotecada && (casilla.calcular_valor_hipoteca * 1.10) <= @saldo
     end
 
     def puedo_vender_propiedad(casilla)
-      casilla.hipotecada && es_de_mipropiedad(casilla)
+      casilla.titulo.hipotecada && es_de_mipropiedad(casilla)
     end
 
     def tengo_carta_libertad

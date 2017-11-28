@@ -160,7 +160,7 @@ module ModeloQytetet
       if casilla.soy_edificable
         se_puede_hipotecar = !casilla.esta_hipotecada
         if se_puede_hipotecar
-          puedo_hipotecar = @jugador_actual.puedo_hipotecar
+          puedo_hipotecar = @jugador_actual.puedo_hipotecar(casilla)
           if puedo_hipotecar
             cantidad_recibida = casilla.hipotecar
             @jugador_actual.modificar_saldo(cantidad_recibida)
