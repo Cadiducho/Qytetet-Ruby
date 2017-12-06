@@ -126,7 +126,7 @@ module ModeloQytetet
     end
 
     def puedo_vender_propiedad(casilla)
-      casilla.titulo.hipotecada && es_de_mipropiedad(casilla)
+      !casilla.titulo.hipotecada && es_de_mipropiedad(casilla)
     end
 
     def tengo_carta_libertad
