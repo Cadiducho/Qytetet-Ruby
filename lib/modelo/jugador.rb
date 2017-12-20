@@ -9,6 +9,8 @@ module ModeloQytetet
     attr_accessor :casilla_actual
     attr_accessor :carta_libertad
     attr_reader :propiedades
+    attr_reader :factor_especulador
+    protected :factor_especulador
 
     def initialize(nombre)
       @nombre = nombre
@@ -17,6 +19,18 @@ module ModeloQytetet
       @casilla_actual = nil
       @carta_libertad = nil
       @propiedades = Array.new
+      @factor_especulador = 1
+    end
+
+    def constructor_copia(jugador)
+      @encarcelado = jugador.encarcelado
+      @saldo = jugador.saldo
+      @casilla_actual = jugador.casilla_actual
+      @carta_libertad = jugador.carta_libertad
+
+      jugador.propiedades.each { |p|
+        @propiedades << p
+      }
     end
 
     def tengo_propiedades
@@ -40,7 +54,7 @@ module ModeloQytetet
         end
       elsif casilla.tipo == TipoCasilla::IMPUESTO
         coste = casilla.coste
-        modificar_saldo(-1 * coste)
+        pagar_impuestos(coste)
       end
 
       tiene_propietario
@@ -142,6 +156,19 @@ module ModeloQytetet
       eliminar_de_mis_propiedades(casilla)
     end
 
+    protected
+    def pagar_impuestos(cantidad)
+      modificar_saldo(-1 * cantidad)
+    end
+
+    def convertirme(fianza)
+      Especulador.new(self, fianza)
+    end
+
+    def tengo_saldo(cantidad)
+      cantidad <= @saldo
+    end
+
     private
     def cuantas_casas_hoteles_tengo
       total = 0
@@ -158,13 +185,9 @@ module ModeloQytetet
     def es_de_mipropiedad(casilla)
       @propiedades.include?(casilla.titulo)
     end
-
-    def tengo_saldo(cantidad)
-      cantidad <= @saldo
-    end
     
     def to_s
-      "Nombre: #{nombre} \n Encarcelado: #{@encarcelado} \n Saldo: #{@saldo} \n @Casilla Actual #{@casilla_actual}\n Carta Libertad #{@carta_libertad}"
+      "Nombre: #{nombre} \n Factor Especulador: #{@factor_especulador} \n Encarcelado: #{@encarcelado} \n Saldo: #{@saldo} \n @Casilla Actual #{@casilla_actual}\n Carta Libertad #{@carta_libertad}"
     end
   end
 end

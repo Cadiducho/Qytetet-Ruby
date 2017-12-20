@@ -29,6 +29,8 @@ module ModeloQytetet
           resumen += "\n * #{pagas_cobras} a cada jugador #{@valor.abs}"
         when TipoSorpresa::SALIRCARCEL
           resumen += "\n * Podrás salir de la cárcel"
+        when TipoSorpresa::CONVERTIRME
+          resumen += "\n * Ahora eres un Especulador. Tu fianza ha sido fijada en #{@valor}"
       end
       resumen
     end 
