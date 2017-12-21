@@ -88,8 +88,7 @@ module InterfazTextualQytetet
         if @jugador.tengo_propiedades && !@jugador.encarcelado && @jugador.saldo > 0
           gestion = @vista.menu_gestion_inmobiliaria
           unless gestion == 0
-            num_propiedad = @vista.menu_elegir_propiedad(@jugador.propiedades)
-            edit_casilla = @jugador.propiedades[num_propiedad].casilla
+            edit_casilla = elegir_propiedad(@jugador.propiedades)
             case gestion
               when 1
                 edificada = @juego.edificar_casa(edit_casilla)
@@ -144,7 +143,7 @@ module InterfazTextualQytetet
 
       lista_propiedades = Array.new
       propiedades.each { |prop|  # crea una lista de strings con numeros y nombres de propiedades
-        prop_string = prop.numeroCasilla.to_s + ' ' + prop.titulo.nombre
+        prop_string = prop.calle.numero_casilla.to_s + ' ' + prop.nombre
         lista_propiedades << prop_string
       }
 

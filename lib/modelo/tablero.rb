@@ -1,6 +1,7 @@
 #encoding: utf-8
 
 require_relative "casilla"
+require_relative "calle"
 require_relative "qytetet"
 require_relative "tipo_casilla"
 require_relative "titulo_propiedad"
@@ -26,6 +27,7 @@ module ModeloQytetet
       juez = Casilla.new(TipoCasilla::JUEZ, 5)
       parking = Casilla.new(TipoCasilla::PARKING, 10)
       impuesto = Casilla.new(TipoCasilla::SORPRESA, 18)
+      impuesto.coste = 700
 
       add_casilla(salida)
       add_casilla(sorpresa1)
@@ -36,18 +38,18 @@ module ModeloQytetet
       add_casilla(parking)
       add_casilla(impuesto)
 
-      breaking_bad = Casilla.new_street(2000, 19, TituloPropiedad.new("Breaking Bad", 100, 20, 1000, 750))
-      narcos = Casilla.new_street(1900, 17, TituloPropiedad.new("Narcos", 100, 19, 950, 750))
-      stranger_things = Casilla.new_street(1600, 16, TituloPropiedad.new("Stranger Things", 95, 18, 875, 650))
-      thirteenrw = Casilla.new_street(1500, 13, TituloPropiedad.new("Thirteen Reasons Why", 90, 17, 800, 600))
-      the_crown = Casilla.new_street(1350, 12, TituloPropiedad.new("The Crown", 85, 16, 650, 500))
-      oitnb = Casilla.new_street(1300, 11, TituloPropiedad.new("Orange is the new Black", 80, 15, 500, 425))
-      house_of_cards = Casilla.new_street(1100, 9, TituloPropiedad.new("House of Cards", 75, 14, 450, 350))
-      jessica = Casilla.new_street(1000, 7, TituloPropiedad.new("Jessica Jones", 70, 13, 350, 350))
-      gilmoregirls = Casilla.new_street(950, 6, TituloPropiedad.new("Girlmore Girls", 65, 12, 300, 300))
-      senseeight = Casilla.new_street(900, 4, TituloPropiedad.new("Sense8", 60, 11, 250, 300))
-      daredevil = Casilla.new_street(800, 2, TituloPropiedad.new("Daredevil", 55, 10, 200, 250))
-      shadowhunters = Casilla.new_street(700, 1, TituloPropiedad.new("ShadowHunters", 50, 10, 150, 250))
+      breaking_bad = Calle.new(2000, 19, TituloPropiedad.new("Breaking Bad", 100, 20, 1000, 750))
+      narcos = Calle.new(1900, 17, TituloPropiedad.new("Narcos", 100, 19, 950, 750))
+      stranger_things = Calle.new(1600, 16, TituloPropiedad.new("Stranger Things", 95, 18, 875, 650))
+      thirteenrw = Calle.new(1500, 13, TituloPropiedad.new("Thirteen Reasons Why", 90, 17, 800, 600))
+      the_crown = Calle.new(1350, 12, TituloPropiedad.new("The Crown", 85, 16, 650, 500))
+      oitnb = Calle.new(1300, 11, TituloPropiedad.new("Orange is the new Black", 80, 15, 500, 425))
+      house_of_cards = Calle.new(1100, 9, TituloPropiedad.new("House of Cards", 75, 14, 450, 350))
+      jessica = Calle.new(1000, 7, TituloPropiedad.new("Jessica Jones", 70, 13, 350, 350))
+      gilmoregirls = Calle.new(950, 6, TituloPropiedad.new("Girlmore Girls", 65, 12, 300, 300))
+      senseeight = Calle.new(900, 4, TituloPropiedad.new("Sense8", 60, 11, 250, 300))
+      daredevil = Calle.new(800, 2, TituloPropiedad.new("Daredevil", 55, 10, 200, 250))
+      shadowhunters = Calle.new(700, 1, TituloPropiedad.new("ShadowHunters", 50, 10, 150, 250))
 
       add_casilla(breaking_bad)
       add_casilla(narcos)
