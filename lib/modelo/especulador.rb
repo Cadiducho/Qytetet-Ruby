@@ -9,7 +9,7 @@ module ModeloQytetet
       constructor_copia(jugador)
 
       @fianza = fianza
-      @factor_especulador = 2
+      @@factor_especulador = 2
     end
 
     protected

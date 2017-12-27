@@ -19,7 +19,7 @@ module ModeloQytetet
       @casilla_actual = nil
       @carta_libertad = nil
       @propiedades = Array.new
-      @factor_especulador = 1
+      @@factor_especulador = 1
     end
 
     def constructor_copia(jugador)
