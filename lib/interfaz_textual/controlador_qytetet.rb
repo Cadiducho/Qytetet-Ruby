@@ -88,7 +88,7 @@ module InterfazTextualQytetet
         if @jugador.tengo_propiedades && !@jugador.encarcelado && @jugador.saldo > 0
           gestion = @vista.menu_gestion_inmobiliaria
           unless gestion == 0
-            edit_casilla = elegir_propiedad(@jugador.propiedades)
+            edit_casilla = elegir_propiedad(@jugador.propiedades).calle
             case gestion
               when 1
                 edificada = @juego.edificar_casa(edit_casilla)
