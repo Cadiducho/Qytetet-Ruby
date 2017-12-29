@@ -10,7 +10,6 @@ module ModeloQytetet
     attr_accessor :carta_libertad
     attr_reader :propiedades
     attr_reader :factor_especulador
-    protected :factor_especulador
 
     def initialize(nombre)
       @nombre = nombre
