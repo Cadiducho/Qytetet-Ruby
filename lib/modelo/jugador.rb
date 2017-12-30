@@ -9,7 +9,6 @@ module ModeloQytetet
     attr_accessor :casilla_actual
     attr_accessor :carta_libertad
     attr_reader :propiedades
-    attr_reader :factor_especulador
 
     def initialize(nombre)
       @nombre = nombre
@@ -30,6 +29,10 @@ module ModeloQytetet
       jugador.propiedades.each { |p|
         @propiedades << p
       }
+    end
+
+    def factor_especulador
+      @@factor_especulador
     end
 
     def tengo_propiedades
