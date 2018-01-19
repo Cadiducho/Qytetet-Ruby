@@ -40,22 +40,19 @@ module InterfazTextualQytetet
     def menu_gestion_inmobiliaria
       mostrar( 'Elige la gestion inmobiliaria que deseas hacer')
       menu_gi = [[0, 'Siguiente Jugador'], [1, 'Edificar casa'], [2, 'Edificar Hotel'], [3, 'Vender propiedad'],[4, 'Hipotecar Propiedad'], [5, 'Cancelar Hipoteca']]
-      salida = seleccion_menu(menu_gi)
-      salida
+      seleccion_menu(menu_gi)
     end
 
     def menu_salir_carcel
       mostrar( 'Elige el metodo para salir de la carcel')
       menu_so = [[0, 'Tirando el dado'], [1, 'Pagando mi libertad']]
-      salida = seleccion_menu(menu_so)
-      salida
+      seleccion_menu(menu_so)
     end
 
     def elegir_quiero_comprar
       mostrar( 'Elige si quieres comprar la casilla')
       menu_so = [[0, 'No'], [1, 'Sí']]
-      salida = seleccion_menu(menu_so)
-      salida
+      seleccion_menu(menu_so)
     end
 
     def menu_elegir_propiedad(lista_propiedades) # numero y nombre de propiedades

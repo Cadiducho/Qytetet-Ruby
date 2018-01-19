@@ -69,7 +69,7 @@ module ModeloQytetet
     def add_casilla(insertar)
       casillas.each { |agregada|
         if insertar.numero_casilla == agregada.numero_casilla
-          puts "La casilla nº: " + insertar.numeroCasilla + " ya esta ocupada"
+          puts "La casilla nº: " + insertar.numero_casilla + " ya esta ocupada"
           return
         end
       }
