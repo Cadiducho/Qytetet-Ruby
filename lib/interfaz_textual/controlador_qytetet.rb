@@ -87,7 +87,7 @@ module InterfazTextualQytetet
 
         if @jugador.tengo_propiedades && !@jugador.encarcelado && @jugador.saldo > 0
           gestion = @vista.menu_gestion_inmobiliaria
-          unless gestion == 0
+          while gestion != 0
             edit_casilla = elegir_propiedad(@jugador.propiedades).calle
             case gestion
               when 1
@@ -105,6 +105,11 @@ module InterfazTextualQytetet
               when 5
                 cancelada = @juego.cancelar_hipoteca(edit_casilla)
                 @vista.mostrar(" -> " + (cancelada ? "Has cancelado" : "No has podido cancelar") + " la hipoteca de la casilla")
+            end
+            if @jugador.tengo_propiedades #se han podido vender las propiedades
+              gestion = @vista.menu_gestion_inmobiliaria
+            else
+              gestion = 0 #salir de la gestioon inmobiliaria
             end
           end
         end

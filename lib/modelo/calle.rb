@@ -89,7 +89,7 @@ module ModeloQytetet
     end
 
     def vender_titulo
-      (@coste + @titulo.factor_revalorizacion * (@coste + (@num_casas + @num_hoteles) * @titulo.get_precio_edificar)).round
+      (@coste + @titulo.factor_revalorizacion * (@coste + (@num_casas + @num_hoteles) * @titulo.precio_edificar)).round
     end
 
     def to_s
