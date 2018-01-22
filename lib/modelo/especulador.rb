@@ -19,7 +19,7 @@ module ModeloQytetet
 
     def ir_a_carcel(casilla)
       if pagar_fianza(@fianza)
-        super.ir_a_carcel(casilla)
+        super
       end
     end
 
