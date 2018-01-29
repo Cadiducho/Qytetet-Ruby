@@ -92,7 +92,13 @@ module ModeloQytetet
     end
 
     def modificar_saldo(cantidad)
-      @saldo += cantidad
+      #Examen -> el saldo no puede ser menor de -2000
+      if ((@saldo + cantidad) < -2000 )
+        @saldo = -2000
+      else
+        @saldo += cantidad
+      end
+      #Fin examen
     end
 
     def obtener_capital
@@ -157,6 +163,10 @@ module ModeloQytetet
       modificar_saldo(precio_venta)
       eliminar_de_mis_propiedades(casilla)
     end
+    
+    def to_s
+      "Nombre: #{nombre} \n Factor Especulador: #{@factor_especulador} \n Encarcelado: #{@encarcelado} \n Saldo: #{@saldo} \n @Casilla Actual #{@casilla_actual}\n Carta Libertad #{@carta_libertad}"
+    end
 
     protected
     def pagar_impuestos(cantidad)
@@ -188,8 +198,5 @@ module ModeloQytetet
       @propiedades.include?(casilla.titulo)
     end
     
-    def to_s
-      "Nombre: #{nombre} \n Factor Especulador: #{@factor_especulador} \n Encarcelado: #{@encarcelado} \n Saldo: #{@saldo} \n @Casilla Actual #{@casilla_actual}\n Carta Libertad #{@carta_libertad}"
-    end
   end
 end
