@@ -67,13 +67,13 @@ module ModeloQytetet
     private :inicializar_tablero
 
     def add_casilla(insertar)
-      casillas.each { |agregada|
+      @casillas.each { |agregada|
         if insertar.numero_casilla == agregada.numero_casilla
           puts "La casilla nº: " + insertar.numero_casilla + " ya esta ocupada"
           return
         end
       }
-      casillas << insertar
+      @casillas << insertar
     end
     private :add_casilla
 
@@ -82,7 +82,7 @@ module ModeloQytetet
     end
 
     def obtener_casilla_numero(numero)
-      casillas.each { |casilla|
+      @casillas.each { |casilla|
         if casilla.numero_casilla == numero
           return casilla
         end
